@@ -19,17 +19,19 @@ var stringifyJSON = function(obj) {
     //convert arrays within something
     return '[' + stringifiedResults + ']';
   }
+
   //turn objects into strings
   if (typeof obj === 'object' && obj !== null) {
     //convert objects within something
     var result = [];
     for (var key in obj) {
-      if (!typeof obj[key] === undefined || 'function') {
+      if (typeof obj[key] !== 'undefined' && typeof obj[key] !== 'function') {
         result.push(stringifyJSON(key) + ':' + stringifyJSON(obj[key]));
       }
     }
     return '{' + result.join(',') + '}';
   }
+
   //add ' ' to obj input to convert obj input into strings for numbers,etc.
   return '' + obj;
 };
