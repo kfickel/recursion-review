@@ -5,7 +5,7 @@
 
 // But instead we're going to implement it from scratch:
 var getElementsByClassName = function(className, node) {
-  //document.body, element.childNodes, element.classList
+  //include document.body, element.childNodes, element.classList
   //variable for an array to return the className
   var nodes = [];
   //set default value for node
@@ -13,6 +13,7 @@ var getElementsByClassName = function(className, node) {
 
   //create a condition to check for classNames
   if (node.classList) {
+    //iterate through classNames
     for (var i = 0; i < node.classList.length; i++) {
       if (node.classList[i] === className) {
       //if it exists push to array
@@ -25,12 +26,12 @@ var getElementsByClassName = function(className, node) {
   
   //if the parent has children
   if (node.childNodes) {
+    //then iterate through children
     for (var j = 0; j < node.childNodes.length; j++) {
+       //then return to top and run the check for className
       nodes = nodes.concat(getElementsByClassName(className, node.childNodes[j]));
     }
   }
-  //then iterate through children
-  //then return to top and run the check for className
 
   //return array
   return nodes;
