@@ -34,7 +34,7 @@ unstringifiableValues = [
   {
     'functions': function() {},
     'undefined': undefined
-  }
+  },
 ];
 
 parseableStrings = [
