@@ -12,17 +12,26 @@ var getElementsByClassName = function(className, node) {
   node = node || document.body;
 
   //create a condition to check for classNames
-  for (var i = 0; i < node.classList.length; i++) {
-    if (node.classList === className) {
-  //if it exists push to array
-      nodes.push(node);
-    }
-  }  
+  if (node.classList) {
+    for (var i = 0; i < node.classList.length; i++) {
+      if (node.classList[i] === className) {
+      //if it exists push to array
+        nodes.push(node);
+      }
+    }  
+  }
+
 
   
   //if the parent has children
+  if (node.childNodes) {
+    for (var j = 0; j < node.childNodes.length; j++) {
+      nodes = nodes.concat(getElementsByClassName(className, node.childNodes[j]));
+    }
+  }
   //then iterate through children
   //then return to top and run the check for className
 
   //return array
+  return nodes;
 };
